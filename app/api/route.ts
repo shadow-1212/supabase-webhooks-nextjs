@@ -11,3 +11,14 @@ export async function GET(request: Request) {
     data,
   });
 }
+
+export async function POST(request: Request) {
+  const { data } = await request.json();
+  const jsonData = JSON.stringify(data);
+  fs.writeFileSync("./public/data.json", jsonData);
+
+  return NextResponse.json({
+    status: 200,
+    message: "Data has been updated",
+  });
+}
