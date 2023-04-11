@@ -1,11 +1,9 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
 
+let data = { record: { email: "test12@gmail.com" } };
+
 export async function GET(request: Request) {
-  const toConvert = fs.readFileSync("./public/data.json");
-
-  const data = JSON.parse(toConvert.toString());
-
   return NextResponse.json({
     status: 200,
     data,
@@ -13,12 +11,13 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const { data } = await request.json();
-  const jsonData = JSON.stringify(data);
-  fs.writeFileSync("./public/data.json", jsonData);
+  const req = await request.json();
+
+  data = req;
 
   return NextResponse.json({
     status: 200,
+    data,
     message: "Data has been updated",
   });
 }
