@@ -11,17 +11,3 @@ export async function GET(request: Request) {
     data,
   });
 }
-
-export async function POST(request: Request) {
-  // Récupérer le corps de la requête POST
-  const req = await request.json();
-
-  // Ecrire les données dans le fichier JSON
-  fs.writeFileSync("./public/data.json", JSON.stringify(req));
-
-  // Retourner une réponse JSON
-  return NextResponse.json({
-    status: 200,
-    message: "Success",
-  });
-}
