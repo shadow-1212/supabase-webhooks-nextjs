@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import fs from "fs";
 
 export async function GET(request: Request) {
-  const toConvert = fs.readFileSync("./data.json");
+  const toConvert = fs.readFileSync("./public/data.json");
 
   const data = JSON.parse(toConvert.toString());
 
